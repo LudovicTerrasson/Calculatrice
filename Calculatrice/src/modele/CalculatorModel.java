@@ -83,15 +83,12 @@ public class CalculatorModel implements CalculatorModelInterface {
 			Double e1 = pile.pop();
 			Double e2 = pile.pop();
 			
-			// Utiliser une deuxième pile temporaire pour stocker les deux derniers éléments
-            Stack<Double> tempStack = new Stack<>();
+            Stack<Double> tempStack = new Stack<>(); // Utiliser une deuxième pile temporaire pour stocker les deux derniers éléments
             
-			 // Échanger l'ordre des éléments dans la pile temporaire
-	        tempStack.push(e1);
+	        tempStack.push(e1);  // Échanger l'ordre des éléments dans la pile temporaire
 	        tempStack.push(e2);
-
-	        // Réinsérer les éléments dans la pile d'origine 
-	        while (!tempStack.isEmpty()) {
+ 
+	        while (!tempStack.isEmpty()) { // Réinsérer les éléments dans la pile d'origine
 	        	pile.push(tempStack.pop());
 	        	}
 			}
