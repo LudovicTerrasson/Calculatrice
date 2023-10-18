@@ -1,4 +1,4 @@
-package modele;
+package model;
 
 import java.util.Stack;
 
@@ -17,10 +17,11 @@ public class CalculatorModel implements CalculatorModelInterface {
 	*/
 	@Override
 	public void add() {
-		if (pile.size()>1) { // Une opération se fait à 2 elts
-		Double e1 = pile.pop();
-		Double e2 = pile.pop();
-		pile.add(e2+e1);
+		if (pile.size()>1) 
+		{ // Une opération se fait à 2 elts
+			Double e1 = pile.pop();
+			Double e2 = pile.pop();
+			pile.add(e2+e1);
 		}
 	}
 	@Override	
@@ -43,7 +44,7 @@ public class CalculatorModel implements CalculatorModelInterface {
 		Double e1 = pile.pop();
 		Double e2 = pile.pop();
 		if (e2 != 0) {
-		pile.add(e1/e2);
+		pile.add(e2/e1);
 		}
 		}
 		
