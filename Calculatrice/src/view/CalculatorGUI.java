@@ -1,6 +1,8 @@
 
 package view;
 
+import java.util.List;
+
 import controler.CalculatorControler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -11,28 +13,29 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.CalculatorModel;
 
 public class CalculatorGUI extends Application implements CalculatorGUIInterface
 {
     public TextField ecran = new TextField();
     public Label memoire = new Label();
     
-    Button B0 = new Button("0");
-    Button B1 = new Button("1");
-    Button B2 = new Button("2");
-    Button B3 = new Button("3");
-    Button B4 = new Button("4");
-    Button B5 = new Button("5");
-    Button B6 = new Button("6");
-    Button B7 = new Button("7");
-    Button B8 = new Button("8");
-    Button B9 = new Button("9");
-    Button Baddition = new Button("+");
-    Button Bsoustraction = new Button("-");
-    Button Bmultiplication = new Button("x");
-    Button Bdivision = new Button("/");
-    Button Bentrée = new Button("Entrée");
-    Button Bpoint = new Button(".");
+    public Button B0 = new Button("0");
+    public Button B1 = new Button("1");
+    public Button B2 = new Button("2");
+    public Button B3 = new Button("3");
+    public Button B4 = new Button("4");
+    public Button B5 = new Button("5");
+    public Button B6 = new Button("6");
+    public Button B7 = new Button("7");
+    public Button B8 = new Button("8");
+    public Button B9 = new Button("9");
+    public Button Baddition = new Button("+");
+    public Button Bsoustraction = new Button("-");
+    public Button Bmultiplication = new Button("x");
+    public Button Bdivision = new Button("/");
+    public Button Bentrée = new Button("push");
+    public Button Bpoint = new Button(".");
 
     
     @Override
@@ -40,7 +43,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
     {
         // Etape I : Affectation d'un nom pour ma calculatrice
         stage.setTitle("Luna Calculette");
-        
+            
         
         
         // Etape II : Création d'un gestionnaire pour organiser et placer les éléments de ma calculatrice
@@ -50,24 +53,22 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         gp.setHgap(10);
         gp.setVgap(10);
         
-        
-        // Etape III : Création d'un écran pour ma calculatrice
-        setÉcran(new TextField());
+        // Etape III : Création d'un ecran pour ma calculatrice
         
         // Réglage (esthétique) de la position de l'écran sur ma calculatrice
-        GridPane.setColumnSpan(getÉcran(), 2); // S'étend sur 2 colonnes
+        GridPane.setColumnSpan(ecran, 2); // S'étend sur 2 colonnes
         
         // Règlage (esthétique) de la taille de l'écran de ma calculatrice
-        getÉcran().setPrefWidth(180); // Largeur de 180 pixels
-        getÉcran().setPrefHeight(100); // Hauteur de 100 pixels
+        ecran.setPrefWidth(180); // Largeur de 180 pixels
+        ecran.setPrefHeight(100); // Hauteur de 100 pixels
         
         // Ajout et positionnement de l'écran sur ma calculatrice
-        gp.add(getÉcran(),1,1);
+        gp.add(ecran,1,1);
         
         
         
         // Etape IV : Création d'une mémoire pour ma calculatrice
-        Label memoire = new Label();
+        
         
         // Réglage (esthétique) de la position de la mémoire sur ma calculatrice
         GridPane.setColumnSpan(memoire, 2); // S'étend sur 2 colonnes
@@ -132,29 +133,79 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Bmultiplication.setPrefHeight(100); // Hauteur de 100 pixels
         Bdivision.setPrefWidth(180); // Largeur de 180 pixels
         Bdivision.setPrefHeight(100); // Hauteur de 100 pixels
+
+    CalculatorModel model = new CalculatorModel();       
+    CalculatorControler controler = new CalculatorControler(this, model); // Assurez-vous d'avoir déjà créé votre modèle (model) et déclaré "this" comme votre vue (CalculatorGUI).
+
+        B0.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B1.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B2.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B3.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B4.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B5.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B6.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B7.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B8.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        B9.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bpoint.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bentrée.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Baddition.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bsoustraction.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bmultiplication.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bdivision.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
         
+        // Etape VIII : Ajout du gestionnaire contenant l'écran et les boutons à ma scène
+        Scene sc = new Scene(gp, 770, 570);
 
-        B0.addEventHandler(ActionEvent.ACTION, new CalculatorControler());
+        
+        
+        // Etape IX : Ajout de ma scène à ma calculatrice
+        stage.setScene(sc);
+        
+        
+        
+        // Etape X : Affichage de ma calculatrice
+        stage.show(); 
 
-    }
-
-    /**
-     * @return the écran
-     */
-    public TextField getÉcran()
-    {
-        return écran;
-    }
-
-    /**
-     * @param écran the écran to set
-     */
-    public void setÉcran(TextField écran)
-    {
-        this.écran = écran;
     }
     
-   
+    public static void main(String[] args) 
+    {
+        launch(args);
+    }
 
 
+	/**
+	 * @return the ecran
+	 */
+	public String LireEcran() {
+		return this.ecran.getText();
+	}
+
+
+	/**
+	 * @param ecran the ecran to set
+	 */
+	public void setEcran(String string) {
+		this.ecran.setText(string);
+	}
+
+
+	/**
+	 * @return the memoire
+	 */
+	public Label getMemoire() {
+		return memoire;
+	}
+
+
+	/**
+	 * @param memoire the memoire to set
+	 */
+	public void setMemoire(List<Double> stackData) {
+		this.memoire.setText(String.valueOf(stackData));
+		
+	}
 }
+    
+  

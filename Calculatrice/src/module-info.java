@@ -9,5 +9,5 @@ module Calculatrice {
 	requires javafx.base;
 	requires javafx.controls;
 	
-	opens frontend to javafx.graphics, javafx.fxml;
+
 }

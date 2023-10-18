@@ -4,77 +4,120 @@ import java.util.Stack;
 
 public class CalculatorModel implements CalculatorModelInterface {
 	
-	public String acu = "";
+	public String accu = "";
 	public Stack<Double> pile= new Stack<>(); 
 	
-	/*public double GetAcu (double acu) {
-		return acu;
-	}
-	
-	public void SetAcu(double acu) {
-		this.acu=acu;
-	}
-	*/
 	@Override
 	public void add() {
-		if (pile.size()>1) 
-		{ // Une opération se fait à 2 elts
+		if (pile.size()>1) // Une opération se fait à 2 elts
+		{ 
 			Double e1 = pile.pop();
 			Double e2 = pile.pop();
 			pile.add(e2+e1);
 		}
+		else 
+		{
+			accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
+		}
 	}
 	@Override	
 	public void substract() {
-		if (pile.size()>1) { // Une opération se fait à 2 elts
-		Double e1 = pile.pop();
-		Double e2 = pile.pop();
-		pile.add(e2-e1);
+		if (pile.size()>1) // Une opération se fait à 2 elts
+		{ 
+		    Double e1 = pile.pop();
+		    Double e2 = pile.pop();
+		    pile.add(e2-e1);
+		}
+		else 
+		{
+			accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
 		}
 	}
 	@Override
 	public void multiply() {
-		Double e1 = pile.pop();
-		Double e2 = pile.pop();
-		pile.add(e1*e2);
-	}
-	@Override
-	public void divide() {
-		if (pile.size()>1) {// Une opération se fait à 2 elts
-		Double e1 = pile.pop();
-		Double e2 = pile.pop();
-		if (e2 != 0) {
-		pile.add(e2/e1);
+		if(pile.size()>1) // Une opération se fait à 2 elts
+		{
+			Double e1 = pile.pop();
+			Double e2 = pile.pop();
+			pile.add(e1*e2);
 		}
+		else
+		{
+			accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
 		}
-		
+	}
+	
+	@Override
+	public void divide() 
+	{
+		if (pile.size()>1) // Une opération se fait à 2 elts
+		{
+		   Double e1 = pile.pop();
+		   Double e2 = pile.pop();
+		   if (e1 != 0) 
+		   {
+		      pile.add(e2/e1);
+		   }
+		   else
+	       {
+			   accu = "Division par zéro impossible";
+		   }
+		}
+		else
+		{
+			accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
+		}
 	}
 
-
 	@Override
-	public void opposite() {
-		Double e1 = pile.pop();
-		pile.add(-e1);
-		
+	public void opposite() 
+	{
+		if (pile.size()>0)
+		{
+		   Double e1 = pile.pop();
+		   pile.add(-e1);
+		}
+		else 
+		{
+			accu="Veuillez sélectionner un nombre pour en obtenir l'opposé";
+		}	
 	}
 
 	@Override
-	public void push() {
-		Double e1 = Double.valueOf(acu);
-		pile.add(e1);
-		
+	public void push(double nombre) 
+	{
+		pile.add(nombre);
+                accu="";
 	}
 
 	@Override
-	public void pop() {
+	public void pop() 
+        {
+            if (pile.size()>0)
+            {
 		pile.pop();
+            }
+            else
+            {
+                accu="La pile est vide";
+            }
+            
 		
 	}
 
 	@Override
-	public void drop() {
-	acu = "";
-	pile.pop();	
+	public void drop() 
+        {
+            if (pile.size()>0)
+            {
+		accu = "";
+	        pile.pop();	
+		
+            }
+            else
+            {
+                accu="La pile est vide";
+            }	
 		
 	}
 
@@ -98,14 +141,15 @@ public class CalculatorModel implements CalculatorModelInterface {
 
 	@Override
 	public void clear() {
-		acu = "";
+		accu = "";
         while (!pile.isEmpty()) { // Vider la pile en entier
             pile.pop();
             }
         }
 		
 		
-		
+	
 		
 	}
+
 

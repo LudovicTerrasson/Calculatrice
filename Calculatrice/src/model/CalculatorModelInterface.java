@@ -12,7 +12,7 @@ public void divide () ;
 	
 public void opposite () ;
 
-public void push() ;
+public void push(double nombre) ;
 
 public void pop() ;
 
