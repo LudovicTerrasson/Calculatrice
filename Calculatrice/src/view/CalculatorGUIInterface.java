@@ -1,13 +1,15 @@
 package view;
 
 import java.util.List;
+import javafx.scene.control.Label;
 
 public interface CalculatorGUIInterface       
 {
-    //public void affiche();
+    public String LireEcran();
     
-    //public void change(String accu);
+    public void setEcran(String string);
     
-    //public void change(List<Double> stackData);
+    public Label getMemoire();
+    
+    public void setMemoire(List<Double> stackData);
 }
-

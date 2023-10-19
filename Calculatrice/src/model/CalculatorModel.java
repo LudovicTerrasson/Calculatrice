@@ -75,7 +75,7 @@ public class CalculatorModel implements CalculatorModelInterface {
 		if (pile.size()>0)
 		{
 		   Double e1 = pile.pop();
-		   pile.add(-e1);
+		   push(-e1);
 		}
 		else 
 		{
@@ -91,11 +91,12 @@ public class CalculatorModel implements CalculatorModelInterface {
 	}
 
 	@Override
-	public void pop() 
+	public void pop() //reprend dernier elt de la stack pour la mettre dans l'accu
         {
             if (pile.size()>0)
             {
-		pile.pop();
+		Double e1=pile.pop();
+                accu=String.valueOf(e1);
             }
             else
             {
@@ -110,7 +111,6 @@ public class CalculatorModel implements CalculatorModelInterface {
         {
             if (pile.size()>0)
             {
-		accu = "";
 	        pile.pop();	
 		
             }
@@ -122,32 +122,43 @@ public class CalculatorModel implements CalculatorModelInterface {
 	}
 
 	@Override
-	public void swap() {
-		if (pile.size()>1) { // Une opération se fait à 2 elts
-			Double e1 = pile.pop();
-			Double e2 = pile.pop();
-			
-            Stack<Double> tempStack = new Stack<>(); // Utiliser une deuxième pile temporaire pour stocker les deux derniers éléments
-            
-	        tempStack.push(e1);  // Échanger l'ordre des éléments dans la pile temporaire
-	        tempStack.push(e2);
- 
-	        while (!tempStack.isEmpty()) { // Réinsérer les éléments dans la pile d'origine
-	        	pile.push(tempStack.pop());
-	        	}
-			}
+	public void swap() 
+        {
+		if (pile.size()>1) 
+                { // Une opération se fait à 2 elts
+	            Double e1 = pile.pop();
+		    Double e2 = pile.pop();
+                    push(e1);
+                    push(e2);
 		}
+                else
+                {
+                    accu="Veuillez selectionner deux opérande avant de swap";
+                }
+        }
    
 
 	@Override
-	public void clear() {
+	public void clear() 
+        {
 		accu = "";
         while (!pile.isEmpty()) { // Vider la pile en entier
             pile.pop();
             }
         }
 		
-		
+        @Override
+	public void erase()
+        {
+            if(accu.length()>0)
+            {
+                accu= accu.substring(0, accu.length()-1);
+            }
+            else
+            {
+                accu="L'accumulateur est déja vide";
+            }
+        }	
 	
 		
 	}

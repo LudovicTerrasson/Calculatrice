@@ -1,13 +1,11 @@
 package controler;
-import java.util.List;
+
 import model.CalculatorModel;
 import view.CalculatorGUI;
-
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+
 
 public class CalculatorControler implements EventHandler<ActionEvent>, CalculatorControlerInterface
 {
@@ -43,9 +41,9 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
         }
         else if(texte.equals("+"))
         {
-        	model.add();
-        	actualiseMemoire();
-                actualiseEcran();
+            model.add();
+            actualiseMemoire();
+            actualiseEcran();
         }
         else if(texte.equals("-"))
         {
@@ -131,21 +129,21 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
         
     }
     
+    @Override
     public void actualiseEcran()
     {
         gui.setEcran(model.accu);
     }
     
+    @Override
     public void actualiseAccu()
     {
     	model.accu = gui.LireEcran();
     }
     
+    @Override
      public void actualiseMemoire()
     {
         gui.setMemoire(model.pile);
     }
-  
-
-
 }

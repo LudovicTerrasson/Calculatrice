@@ -21,5 +21,7 @@ public void drop();
 public void swap();
 
 public void clear();
+
+public void erase();
 	
 }

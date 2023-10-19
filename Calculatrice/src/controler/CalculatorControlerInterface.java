@@ -1,12 +1,12 @@
-
 package controler;
-
-import java.util.List;
 
 public interface CalculatorControlerInterface
 {
-    //public void change(String accu);
+    public void actualiseEcran();
     
-    //public void change(List<Double> stackData);
+    public void actualiseAccu();
+    
+    public void actualiseMemoire();
+    
 }
 

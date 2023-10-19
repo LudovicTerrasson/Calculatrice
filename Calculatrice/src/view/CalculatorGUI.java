@@ -198,14 +198,16 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
 	/**
 	 * @return the ecran
 	 */
+    @Override
 	public String LireEcran() {
 		return this.ecran.getText();
 	}
 
 
 	/**
-	 * @param ecran the ecran to set
+     * @param string
 	 */
+    @Override
 	public void setEcran(String string) {
 		this.ecran.setText(string);
 	}
@@ -214,14 +216,16 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
 	/**
 	 * @return the memoire
 	 */
+    @Override
 	public Label getMemoire() {
 		return memoire;
 	}
 
 
 	/**
-	 * @param memoire the memoire to set
+     * @param stackData
 	 */
+    @Override
 	public void setMemoire(List<Double> stackData) {
 		this.memoire.setText(String.valueOf(stackData));
 		
