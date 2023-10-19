@@ -99,6 +99,12 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
             actualiseMemoire();
             actualiseEcran();
         }
+         else if(texte.equals("<="))
+         {
+             model.erase();
+             actualiseMemoire();
+             actualiseEcran();
+         }
         // Si l'utilisateur vient de faire une erreur 
         else if("Veuillez choisir les deux opérandes avant de choisir l'opération".equals(lu))
         {

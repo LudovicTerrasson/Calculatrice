@@ -39,6 +39,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
     public Button Bdrop = new Button("drop");
     public Button Bswap = new Button("swap");
     public Button Bclear = new Button("C");
+    public Button Berase = new Button("<=");
     
     @Override
     public void start(Stage stage)
@@ -62,7 +63,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         
         // Règlage (esthétique) de la taille de l'écran de ma calculatrice
         ecran.setPrefWidth(180); // Largeur de 180 pixels
-        ecran.setPrefHeight(100); // Hauteur de 100 pixels
+        ecran.setPrefHeight(140); // Hauteur de 100 pixels
         
         // Ajout et positionnement de l'écran sur ma calculatrice
         gp.add(ecran,1,1);
@@ -76,7 +77,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         GridPane.setColumnSpan(memoire, 2); // S'étend sur 2 colonnes
         
         // Ajout et positionnement de la mémoire sur ma calculatrice
-        gp.add(memoire, 3, 1);
+        gp.add(memoire, 4, 1);
  
         
         
@@ -85,27 +86,28 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         
         // Ajout et positionnement des bouttons sur ma calculatrice
         
-        gp.add(B0,1,2);
-        gp.add(B1,2,2);
-        gp.add(B2,3,2);
-        gp.add(B3,4,2);
-        gp.add(B4,1,3);
-        gp.add(B5,2,3);
-        gp.add(B6,3,3);
-        gp.add(B7,4,3);
-        gp.add(B8,1,4);
-        gp.add(B9,2,4);
-        gp.add(Baddition,1,5);
-        gp.add(Bsoustraction,2,5);
-        gp.add(Bmultiplication,3,5);
-        gp.add(Bdivision,4,5);
-        gp.add(Bentrée,3,4);
-        gp.add(Bpoint,4,4);
-        gp.add(Bopposite, 1, 5);
-        gp.add(Bpop, 2, 5);
-        gp.add(Bdrop, 3, 5);
-        gp.add(Bswap, 4, 5);
-        gp.add(Bclear, 1, 6);
+        gp.add(B0,2,7);
+        gp.add(B1,1,6);
+        gp.add(B2,2,6);
+        gp.add(B3,3,6);
+        gp.add(B4,1,5);
+        gp.add(B5,2,5);
+        gp.add(B6,3,5);
+        gp.add(B7,1,4);
+        gp.add(B8,2,4);
+        gp.add(B9,3,4);
+        gp.add(Baddition,4,6);
+        gp.add(Bsoustraction,4,5);
+        gp.add(Bmultiplication,4,4);
+        gp.add(Bdivision,4,3);
+        gp.add(Bentrée,4,7);
+        gp.add(Bpoint,3,7);
+        gp.add(Bopposite,1,7);
+        gp.add(Bpop, 3, 2);
+        gp.add(Bdrop, 2, 3);
+        gp.add(Bswap, 1, 3);
+        gp.add(Bclear, 3, 3);
+        gp.add(Berase, 3, 1);
         
         // Règlage (esthétique) de la taille des boutons de ma calculatrice
         B0.setPrefWidth(180); // Largeur de 180 pixels
@@ -142,14 +144,19 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Bdivision.setPrefHeight(100); // Hauteur de 100 pixels
         Bopposite.setPrefHeight(100);
         Bopposite.setPrefWidth(180); // Largeur de 180 pixels
-        Bpop.setPrefHeight(100); // Hauteur de 100 pixels
-        Bpop.setPrefWidth(180); // Largeur de 180 pixels
+        Bpop.setPrefHeight(70); // Hauteur de 100 pixels
+        Bpop.setPrefWidth(100); // Largeur de 180 pixels
         Bdrop.setPrefHeight(100); // Hauteur de 100 pixels
         Bdrop.setPrefWidth(180); // Largeur de 180 pixels
         Bswap.setPrefHeight(100); // Hauteur de 100 pixels
         Bswap.setPrefWidth(180); // Largeur de 180 pixels
         Bclear.setPrefHeight(100); // Hauteur de 100 pixels
         Bclear.setPrefWidth(180); // Largeur de 180 pixels
+        Berase.setPrefHeight(70); // Hauteur de 100 pixels
+        Berase.setPrefWidth(100); // Largeur de 180 pixels
+        
+        Bclear.setStyle("-fx-font-size: 20px; -fx-text-fill: #ff0000;");
+       
         
     CalculatorModel model = new CalculatorModel();       
     CalculatorControler controler = new CalculatorControler(this, model); // Assurez-vous d'avoir déjà créé votre modèle (model) et déclaré "this" comme votre vue (CalculatorGUI).
@@ -174,8 +181,9 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Bdrop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
         Bswap.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
         Bclear.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
+        Berase.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         // Etape VIII : Ajout du gestionnaire contenant l'écran et les boutons à ma scène
-        Scene sc = new Scene(gp, 770, 570);
+        Scene sc = new Scene(gp, 800, 800);
 
         
         
