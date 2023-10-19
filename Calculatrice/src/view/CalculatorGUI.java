@@ -1,4 +1,3 @@
-
 package view;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.CalculatorModel;
 
@@ -36,7 +34,11 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
     public Button Bdivision = new Button("/");
     public Button Bentrée = new Button("push");
     public Button Bpoint = new Button(".");
-
+    public Button Bopposite = new Button("opposite");
+    public Button Bpop = new Button("pop");
+    public Button Bdrop = new Button("drop");
+    public Button Bswap = new Button("swap");
+    public Button Bclear = new Button("C");
     
     @Override
     public void start(Stage stage)
@@ -99,6 +101,11 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         gp.add(Bdivision,4,5);
         gp.add(Bentrée,3,4);
         gp.add(Bpoint,4,4);
+        gp.add(Bopposite, 1, 5);
+        gp.add(Bpop, 2, 5);
+        gp.add(Bdrop, 3, 5);
+        gp.add(Bswap, 4, 5);
+        gp.add(Bclear, 1, 6);
         
         // Règlage (esthétique) de la taille des boutons de ma calculatrice
         B0.setPrefWidth(180); // Largeur de 180 pixels
@@ -133,7 +140,17 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Bmultiplication.setPrefHeight(100); // Hauteur de 100 pixels
         Bdivision.setPrefWidth(180); // Largeur de 180 pixels
         Bdivision.setPrefHeight(100); // Hauteur de 100 pixels
-
+        Bopposite.setPrefHeight(100);
+        Bopposite.setPrefWidth(180); // Largeur de 180 pixels
+        Bpop.setPrefHeight(100); // Hauteur de 100 pixels
+        Bpop.setPrefWidth(180); // Largeur de 180 pixels
+        Bdrop.setPrefHeight(100); // Hauteur de 100 pixels
+        Bdrop.setPrefWidth(180); // Largeur de 180 pixels
+        Bswap.setPrefHeight(100); // Hauteur de 100 pixels
+        Bswap.setPrefWidth(180); // Largeur de 180 pixels
+        Bclear.setPrefHeight(100); // Hauteur de 100 pixels
+        Bclear.setPrefWidth(180); // Largeur de 180 pixels
+        
     CalculatorModel model = new CalculatorModel();       
     CalculatorControler controler = new CalculatorControler(this, model); // Assurez-vous d'avoir déjà créé votre modèle (model) et déclaré "this" comme votre vue (CalculatorGUI).
 
@@ -152,8 +169,11 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Baddition.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bsoustraction.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bmultiplication.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
-        Bdivision.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
-        
+        Bopposite.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
+        Bpop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
+        Bdrop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
+        Bswap.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
+        Bclear.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
         // Etape VIII : Ajout du gestionnaire contenant l'écran et les boutons à ma scène
         Scene sc = new Scene(gp, 770, 570);
 
@@ -208,4 +228,6 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
 	}
 }
     
+  
+
   

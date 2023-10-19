@@ -71,9 +71,33 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
             actualiseMemoire();
             actualiseEcran();
         }
+        else if(texte.equals("C"))
+        {
+            model.clear();
+            actualiseMemoire();
+            actualiseEcran();
+        }
+        else if(texte.equals("-x"))
+        {
+            model.opposite();
+            actualiseMemoire();
+            actualiseEcran();
+        }
         else if(texte.equals("clear"))
         {
             model.clear();
+            actualiseMemoire();
+            actualiseEcran();
+        }
+        else if(texte.equals("drop"))
+        {
+            model.drop();
+            actualiseMemoire();
+            actualiseEcran();
+        }
+         else if(texte.equals("pop"))
+        {
+            model.pop();
             actualiseMemoire();
             actualiseEcran();
         }
@@ -85,6 +109,12 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
             actualiseAccu();
         }
          else if("Veuillez sélectionner un nombre avant de push".equals(lu))
+        {
+            // Suppression du message d'erreur et ajout du chiffre a l'écran
+            gui.setEcran(texte); 
+            actualiseAccu();
+        }
+           else if("Veuillez sélectionner un nombre avant de push".equals(lu))
         {
             // Suppression du message d'erreur et ajout du chiffre a l'écran
             gui.setEcran(texte); 
