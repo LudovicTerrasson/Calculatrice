@@ -75,7 +75,7 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
             actualiseMemoire();
             actualiseEcran();
         }
-        else if(texte.equals("-x"))
+        else if(texte.equals("opposite"))
         {
             model.opposite();
             actualiseMemoire();
@@ -118,12 +118,30 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
             gui.setEcran(texte); 
             actualiseAccu();
         }
-           else if("Veuillez sélectionner un nombre avant de push".equals(lu))
+           else if("Veuillez selectionner deux opérandes avant de swap".equals(lu))
         {
             // Suppression du message d'erreur et ajout du chiffre a l'écran
             gui.setEcran(texte); 
             actualiseAccu();
         }
+           else if("L'accumulateur est déja vide".equals(lu))
+           {
+               // Suppression du message d'erreur et ajout du chiffre a l'écran
+               gui.setEcran(texte); 
+               actualiseAccu();
+           }
+           else if("Veuillez sélectionner un nombre pour en obtenir l'opposé".equals(lu))
+           {
+               // Suppression du message d'erreur et ajout du chiffre a l'écran
+               gui.setEcran(texte); 
+               actualiseAccu();
+           }
+           else if("La pile est vide".equals(lu))
+           {
+               // Suppression du message d'erreur et ajout du chiffre a l'écran
+               gui.setEcran(texte); 
+               actualiseAccu();
+           }
         else
         {
             // Ajout du chiffre a l'écran

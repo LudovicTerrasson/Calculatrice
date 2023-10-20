@@ -60,10 +60,10 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         
         // Réglage (esthétique) de la position de l'écran sur ma calculatrice
         GridPane.setColumnSpan(ecran, 2); // S'étend sur 2 colonnes
+        GridPane.setRowSpan(ecran, 2); // S'étend sur 2 colonnes
         
         // Règlage (esthétique) de la taille de l'écran de ma calculatrice
-        ecran.setPrefWidth(180); // Largeur de 180 pixels
-        ecran.setPrefHeight(140); // Hauteur de 100 pixels
+        ecran.setPrefHeight(150); // Hauteur de 100 pixels
         
         // Ajout et positionnement de l'écran sur ma calculatrice
         gp.add(ecran,1,1);
@@ -74,7 +74,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         
         
         // Réglage (esthétique) de la position de la mémoire sur ma calculatrice
-        GridPane.setColumnSpan(memoire, 2); // S'étend sur 2 colonnes
+        GridPane.setColumnSpan(memoire, 1); // S'étend sur 2 colonnes
         
         // Ajout et positionnement de la mémoire sur ma calculatrice
         gp.add(memoire, 4, 1);
@@ -183,7 +183,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Bclear.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
         Berase.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         // Etape VIII : Ajout du gestionnaire contenant l'écran et les boutons à ma scène
-        Scene sc = new Scene(gp, 800, 800);
+        Scene sc = new Scene(gp, 770, 720);
 
         
         
@@ -239,6 +239,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
 		
 	}
 }
+    
     
   
 

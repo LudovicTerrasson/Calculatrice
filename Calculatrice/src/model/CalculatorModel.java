@@ -133,7 +133,7 @@ public class CalculatorModel implements CalculatorModelInterface {
 		}
                 else
                 {
-                    accu="Veuillez selectionner deux opérande avant de swap";
+                    accu="Veuillez selectionner deux opérandes avant de swap";
                 }
         }
    
@@ -162,5 +162,4 @@ public class CalculatorModel implements CalculatorModelInterface {
 	
 		
 	}
-
 
