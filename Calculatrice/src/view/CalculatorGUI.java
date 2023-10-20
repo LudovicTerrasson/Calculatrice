@@ -157,6 +157,7 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Bentrée.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Baddition.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bsoustraction.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bdivision.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bmultiplication.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bopposite.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bpop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
