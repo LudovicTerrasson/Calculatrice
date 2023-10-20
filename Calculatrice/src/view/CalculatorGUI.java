@@ -3,21 +3,23 @@ package view;
 import java.util.List;
 
 import controler.CalculatorControler;
+import javafx.scene.control.Label;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.CalculatorModel;
 
-public class CalculatorGUI extends Application implements CalculatorGUIInterface
-{
-    public TextField ecran = new TextField();
-    public Label memoire = new Label();
-    
+public class CalculatorGUI extends Application implements CalculatorGUIInterface {
+    // La classe CalculatorGUI gère l'interface utilisateur de la calculatrice.
+
+    public TextField ecran = new TextField(); // Champ de texte pour l'écran de la calculatrice
+    public Label memoire = new Label(); // Étiquette pour afficher la mémoire (pile)
+
+    // Boutons de la calculatrice
     public Button B0 = new Button("0");
     public Button B1 = new Button("1");
     public Button B2 = new Button("2");
@@ -40,76 +42,55 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
     public Button Bswap = new Button("swap");
     public Button Bclear = new Button("C");
     public Button Berase = new Button("<=");
-    
-    @Override
-    public void start(Stage stage)
-    {
-        // Etape I : Affectation d'un nom pour ma calculatrice
-        stage.setTitle("Luna Calculette");
-            
-        
-        
-        // Etape II : Création d'un gestionnaire pour organiser et placer les éléments de ma calculatrice
-        GridPane gp = new GridPane();
-        
-        // Réglage (esthétique) de l'écart entre les éléments de ma calculatrice
-        gp.setHgap(10);
-        gp.setVgap(10);
-        
-        // Etape III : Création d'un ecran pour ma calculatrice
-        
-        // Réglage (esthétique) de la position de l'écran sur ma calculatrice
-        GridPane.setColumnSpan(ecran, 2); // S'étend sur 2 colonnes
-        GridPane.setRowSpan(ecran, 2); // S'étend sur 2 colonnes
-        
-        // Règlage (esthétique) de la taille de l'écran de ma calculatrice
-        ecran.setPrefHeight(150); // Hauteur de 100 pixels
-        
-        // Ajout et positionnement de l'écran sur ma calculatrice
-        gp.add(ecran,1,1);
-        
-        
-        
-        // Etape IV : Création d'une mémoire pour ma calculatrice
-        
-        
-        // Réglage (esthétique) de la position de la mémoire sur ma calculatrice
-        GridPane.setColumnSpan(memoire, 1); // S'étend sur 2 colonnes
-        
-        // Ajout et positionnement de la mémoire sur ma calculatrice
-        gp.add(memoire, 4, 1);
- 
-        
-        
-        // Etape VI : Création des boutons de ma calculatrice
 
-        
-        // Ajout et positionnement des bouttons sur ma calculatrice
-        
-        gp.add(B0,2,7);
-        gp.add(B1,1,6);
-        gp.add(B2,2,6);
-        gp.add(B3,3,6);
-        gp.add(B4,1,5);
-        gp.add(B5,2,5);
-        gp.add(B6,3,5);
-        gp.add(B7,1,4);
-        gp.add(B8,2,4);
-        gp.add(B9,3,4);
-        gp.add(Baddition,4,6);
-        gp.add(Bsoustraction,4,5);
-        gp.add(Bmultiplication,4,4);
-        gp.add(Bdivision,4,3);
-        gp.add(Bentrée,4,7);
-        gp.add(Bpoint,3,7);
-        gp.add(Bopposite,1,7);
+    @Override
+    public void start(Stage stage) {
+        // Configuration de l'interface utilisateur de la calculatrice
+
+        stage.setTitle("Luna Calculette"); // Titre de la fenêtre
+
+        GridPane gp = new GridPane(); // Crée un gestionnaire de mise en page (grille)
+
+        gp.setHgap(10); // Espacement horizontal entre les éléments de la grille
+        gp.setVgap(10); // Espacement vertical entre les éléments de la grille
+
+        GridPane.setColumnSpan(ecran, 2); // L'écran s'étend sur 2 colonnes
+        GridPane.setRowSpan(ecran, 2); // L'écran s'étend sur 2 lignes
+
+        ecran.setPrefHeight(150); // Hauteur de l'écran
+
+        gp.add(ecran, 1, 1); // Ajoute l'écran à la grille
+
+        GridPane.setColumnSpan(memoire, 1); // La mémoire s'étend sur 1 colonne
+        gp.add(memoire, 4, 1); // Ajoute l'affichage de la mémoire à la grille
+
+        // Ajoute et positionne les boutons sur la grille
+        // (Notez que la taille des boutons est définie ci-dessous pour tous les boutons de manière similaire)
+
+        gp.add(B0, 2, 7);
+        gp.add(B1, 1, 6);
+        gp.add(B2, 2, 6);
+        gp.add(B3, 3, 6);
+        gp.add(B4, 1, 5);
+        gp.add(B5, 2, 5);
+        gp.add(B6, 3, 5);
+        gp.add(B7, 1, 4);
+        gp.add(B8, 2, 4);
+        gp.add(B9, 3, 4);
+        gp.add(Baddition, 4, 6);
+        gp.add(Bsoustraction, 4, 5);
+        gp.add(Bmultiplication, 4, 4);
+        gp.add(Bdivision, 4, 3);
+        gp.add(Bentrée, 4, 7);
+        gp.add(Bpoint, 3, 7);
+        gp.add(Bopposite, 1, 7);
         gp.add(Bpop, 3, 2);
         gp.add(Bdrop, 2, 3);
         gp.add(Bswap, 1, 3);
         gp.add(Bclear, 3, 3);
         gp.add(Berase, 3, 1);
-        
-        // Règlage (esthétique) de la taille des boutons de ma calculatrice
+
+        // Définit la taille des boutons (similaire pour tous les boutons)
         B0.setPrefWidth(180); // Largeur de 180 pixels
         B0.setPrefHeight(100); // Hauteur de 100 pixels
         B1.setPrefWidth(180); // Largeur de 180 pixels
@@ -156,11 +137,12 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Berase.setPrefWidth(100); // Largeur de 180 pixels
         
         Bclear.setStyle("-fx-font-size: 20px; -fx-text-fill: #ff0000;");
-       
-        
-    CalculatorModel model = new CalculatorModel();       
-    CalculatorControler controler = new CalculatorControler(this, model); // Assurez-vous d'avoir déjà créé votre modèle (model) et déclaré "this" comme votre vue (CalculatorGUI).
 
+        // Crée une instance du modèle (CalculatorModel) et du contrôleur (CalculatorControler)
+        CalculatorModel model = new CalculatorModel();
+        CalculatorControler controler = new CalculatorControler(this, model);
+
+        // Associe des gestionnaires d'événements aux boutons pour que le contrôleur les gère
         B0.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         B1.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         B2.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
@@ -176,70 +158,45 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         Baddition.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bsoustraction.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Bmultiplication.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
-        Bopposite.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
-        Bpop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
-        Bdrop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
-        Bswap.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
-        Bclear.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e)); 
+        Bopposite.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bpop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bdrop.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bswap.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
+        Bclear.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
         Berase.addEventHandler(ActionEvent.ACTION, e -> controler.handle(e));
-        // Etape VIII : Ajout du gestionnaire contenant l'écran et les boutons à ma scène
-        Scene sc = new Scene(gp, 770, 720);
 
-        
-        
-        // Etape IX : Ajout de ma scène à ma calculatrice
-        stage.setScene(sc);
-        
-        
-        
-        // Etape X : Affichage de ma calculatrice
-        stage.show(); 
+        Scene sc = new Scene(gp, 770, 720); // Crée une scène avec la grille
 
-    }
-    
-    public static void main(String[] args) 
-    {
-        launch(args);
+        stage.setScene(sc); // Définit la scène dans la fenêtre
+
+        stage.show(); // Affiche la fenêtre
     }
 
+    public static void main(String[] args) {
+        launch(args); // Point d'entrée de l'application JavaFX
+    }
 
-	/**
-	 * @return the ecran
-	 */
     @Override
-	public String LireEcran() {
-		return this.ecran.getText();
-	}
+    public String LireEcran() {
+        return this.ecran.getText(); // Lit le contenu de l'écran de la calculatrice
+    }
 
-
-	/**
-     * @param string
-	 */
     @Override
-	public void setEcran(String string) {
-		this.ecran.setText(string);
-	}
+    public void setEcran(String string) {
+        this.ecran.setText(string); // Définit le contenu de l'écran de la calculatrice
+    }
 
-
-	/**
-	 * @return the memoire
-	 */
     @Override
-	public Label getMemoire() {
-		return memoire;
-	}
+    public Label getMemoire() {
+        return memoire; // Renvoie l'étiquette d'affichage de la mémoire
+    }
 
-
-	/**
-     * @param stackData
-	 */
     @Override
-	public void setMemoire(List<Double> stackData) {
-		this.memoire.setText(String.valueOf(stackData));
-		
-	}
+    public void setMemoire(List<Double> stackData) {
+        this.memoire.setText(String.valueOf(stackData)); // Met à jour l'affichage de la pile dans l'interface utilisateur
+    }
 }
-    
+ 
     
   
 

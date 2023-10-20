@@ -6,44 +6,44 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
+public class CalculatorControler implements EventHandler<ActionEvent>, CalculatorControlerInterface {
+    // Les contrôleurs sont responsables de la gestion des événements utilisateur
+    // Cette classe est un contrôleur qui réagit aux actions de l'utilisateur sur les boutons.
 
-public class CalculatorControler implements EventHandler<ActionEvent>, CalculatorControlerInterface
-{
-    public CalculatorGUI gui;
-    public CalculatorModel model;
-    
-    public CalculatorControler(CalculatorGUI gui, CalculatorModel model)
-    {
-        this.gui=gui;
-        this.model=model;
+    public CalculatorGUI gui; // Référence à la vue (l'interface utilisateur)
+    public CalculatorModel model; // Référence au modèle (la logique de la calculatrice)
+
+    // Constructeur de la classe CalculatorControler
+    public CalculatorControler(CalculatorGUI gui, CalculatorModel model) {
+        this.gui = gui; // Initialise la référence à la vue
+        this.model = model; // Initialise la référence au modèle
     }
+
     @Override
-    public void handle(ActionEvent event) 
-    {
-        Object boutton = event.getSource();
-        Button b = (Button) boutton;
-        String texte = b.getText();
-        String lu = gui.LireEcran();
-    
-        if(texte.equals("push"))
-        {
-            if (!lu.isEmpty()) 
-            {
-                model.push(Double.valueOf(lu));
-        	actualiseMemoire();
-                actualiseEcran();
-            }
-            else
-            {
+    public void handle(ActionEvent event) {
+        // La méthode handle est appelée chaque fois qu'un événement (clic de bouton) se produit
+
+        Object boutton = event.getSource(); // Récupère l'objet (bouton) qui a déclenché l'événement
+        Button b = (Button) boutton; // Convertit l'objet en bouton
+        String texte = b.getText(); // Récupère le texte affiché sur le bouton
+        String lu = gui.LireEcran(); // Lit le texte actuellement affiché sur l'écran
+
+        // En fonction du texte du bouton cliqué, nous effectuons différentes actions
+        if (texte.equals("push")) {
+            if (!lu.isEmpty()) {
+                // Si l'écran n'est pas vide, nous essayons de pousser le nombre actuellement affiché
+                model.push(Double.valueOf(lu)); // Appelle la méthode push du modèle
+                actualiseMemoire(); // Met à jour l'affichage de la mémoire
+                actualiseEcran(); // Met à jour l'affichage de l'écran
+            } else {
+                // Si l'écran est vide, nous affichons un message d'erreur à l'utilisateur
                 gui.setEcran("Veuillez sélectionner un nombre avant de push");
             }
-               
-        }
-        else if(texte.equals("+"))
-        {
-            model.add();
-            actualiseMemoire();
-            actualiseEcran();
+        } else if (texte.equals("+")) {
+            // Si l'utilisateur a cliqué sur le bouton d'addition, nous appelons la méthode add du modèle
+            model.add(); // Appelle la méthode add du modèle
+            actualiseMemoire(); // Met à jour l'affichage de la mémoire
+            actualiseEcran(); // Met à jour l'affichage de l'écran
         }
         else if(texte.equals("-"))
         {
@@ -154,20 +154,20 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
     }
     
     @Override
-    public void actualiseEcran()
-    {
-        gui.setEcran(model.accu);
+    public void actualiseEcran() {
+        // Cette méthode met à jour l'affichage de l'écran avec la valeur de l'accumulateur du modèle
+        gui.setEcran(model.accu); // Met à jour l'affichage de l'écran avec la valeur de l'accumulateur
     }
-    
+
     @Override
-    public void actualiseAccu()
-    {
-    	model.accu = gui.LireEcran();
+    public void actualiseAccu() {
+        // Cette méthode met à jour la valeur de l'accumulateur du modèle en lisant le texte de l'écran
+        model.accu = gui.LireEcran(); // Met à jour la valeur de l'accumulateur en lisant le texte de l'écran
     }
-    
+
     @Override
-     public void actualiseMemoire()
-    {
-        gui.setMemoire(model.pile);
+    public void actualiseMemoire() {
+        // Cette méthode met à jour l'affichage de la mémoire avec la pile du modèle
+        gui.setMemoire(model.pile); // Met à jour l'affichage de la mémoire avec la pile du modèle
     }
 }
