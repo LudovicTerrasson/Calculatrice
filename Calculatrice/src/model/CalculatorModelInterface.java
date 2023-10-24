@@ -1,6 +1,7 @@
 package model;
 
-public interface CalculatorModelInterface {
+public interface CalculatorModelInterface 
+{
     // Méthode pour effectuer une addition
     public void add();
 
@@ -17,7 +18,7 @@ public interface CalculatorModelInterface {
     public void opposite();
 
     // Méthode pour empiler un nombre
-    public void push(double nombre);
+    public void push();
 
     // Méthode pour récupérer un nombre de la pile
     public void pop();

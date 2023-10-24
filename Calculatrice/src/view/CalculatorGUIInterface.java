@@ -3,7 +3,8 @@ package view;
 import java.util.List;
 import javafx.scene.control.Label;
 
-public interface CalculatorGUIInterface {
+public interface CalculatorGUIInterface 
+{
     // Méthode pour lire le contenu de l'écran de la calculatrice
     public String LireEcran();
 

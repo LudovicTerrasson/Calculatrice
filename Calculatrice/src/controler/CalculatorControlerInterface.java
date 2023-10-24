@@ -1,6 +1,7 @@
 package controler;
 
-public interface CalculatorControlerInterface {
+public interface CalculatorControlerInterface 
+{
     // Méthode pour actualiser l'affichage de l'écran
     public void actualiseEcran();
 

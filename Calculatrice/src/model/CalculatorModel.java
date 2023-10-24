@@ -2,130 +2,206 @@ package model;
 
 import java.util.Stack;
 
-public class CalculatorModel implements CalculatorModelInterface {
-
+public class CalculatorModel implements CalculatorModelInterface 
+{
     // L'accumulateur qui stocke le résultat des opérations
     public String accu = "";
     // La pile qui stocke les nombres
     public Stack<Double> pile = new Stack<>();
 
     @Override
-    public void add() {
-        if (pile.size() > 1) { // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+    public void add() 
+    {
+        // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+        if (pile.size() > 1) 
+        { 
             Double e1 = pile.pop(); // Récupère le premier élément de la pile
             Double e2 = pile.pop(); // Récupère le deuxième élément de la pile
             pile.add(e2 + e1); // Ajoute le résultat de l'addition à la pile
-        } else {
-            accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
+        } 
+        // Sinon, la pile ne contient pas suffisamment d'éléments, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : Veuillez choisir les deux opérandes avant de choisir l'opération";
             // Si la pile ne contient pas suffisamment d'éléments, définissez un message d'erreur dans l'accumulateur
         }
     }
 
     @Override
-    public void substract() {
-        if (pile.size() > 1) { // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+    public void substract() 
+    {
+        // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+        if (pile.size() > 1) 
+        { 
             Double e1 = pile.pop(); // Récupère le premier élément de la pile
             Double e2 = pile.pop(); // Récupère le deuxième élément de la pile
             pile.add(e2 - e1); // Ajoute le résultat de la soustraction à la pile
-        } else {
-            accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
-            // Si la pile ne contient pas suffisamment d'éléments, définissez un message d'erreur dans l'accumulateur
+        }
+        //Sinon, la pile ne contient pas suffisamment d'éléments, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : Veuillez choisir les deux opérandes avant de choisir l'opération";
         }
     }
 
     @Override
-    public void multiply() {
-        if (pile.size() > 1) { // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+    public void multiply() 
+    {
+        // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+        if (pile.size() > 1) 
+        { 
             Double e1 = pile.pop(); // Récupère le premier élément de la pile
             Double e2 = pile.pop(); // Récupère le deuxième élément de la pile
             pile.add(e1 * e2); // Ajoute le résultat de la multiplication à la pile
-        } else {
-            accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
-            // Si la pile ne contient pas suffisamment d'éléments, définissez un message d'erreur dans l'accumulateur
+        } 
+        //Sinon, la pile ne contient pas suffisamment d'éléments, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : Veuillez choisir les deux opérandes avant de choisir l'opération";
         }
     }
 
     @Override
-    public void divide() {
-        if (pile.size() > 1) { // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+    public void divide() 
+    {
+        // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+        if (pile.size() > 1) 
+        { 
             Double e1 = pile.pop(); // Récupère le premier élément de la pile
             Double e2 = pile.pop(); // Récupère le deuxième élément de la pile
-            if (e1 != 0) { // Vérifie que le diviseur n'est pas zéro pour éviter une division par zéro
+            // Vérifie que le diviseur n'est pas zéro pour éviter une division par zéro
+            if (e1 != 0) 
+            { 
                 pile.add(e2 / e1); // Ajoute le résultat de la division à la pile
-            } else {
-                accu = "Division par zéro impossible";
-                // Si le diviseur est zéro, définissez un message d'erreur dans l'accumulateur
+            } 
+            // Sinin, le diviseur est zéro, donc affichage d'un message d'erreur dans l'accumulateur
+            else 
+            {
+                accu = "Erreur : Division par zéro impossible";
             }
-        } else {
-            accu = "Veuillez choisir les deux opérandes avant de choisir l'opération";
-            // Si la pile ne contient pas suffisamment d'éléments, définissez un message d'erreur dans l'accumulateur
+        } 
+        //Sinon, la pile ne contient pas suffisamment d'éléments, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : Veuillez choisir les deux opérandes avant de choisir l'opération";
         }
     }
 
     @Override
-    public void opposite() {
-        if (pile.size() > 0) { // Vérifie s'il y a au moins un élément dans la pile
+    public void opposite() 
+    {
+        // Vérifie s'il y a au moins un élément dans la pile
+        if (pile.size() > 0) 
+        { 
             Double e1 = pile.pop(); // Récupère le premier élément de la pile
-            push(-e1); // Ajoute l'opposé de l'élément à la pile
-        } else {
-            accu = "Veuillez sélectionner un nombre pour en obtenir l'opposé";
-            // Si la pile est vide, définissez un message d'erreur dans l'accumulateur
+            // Si le nombre est positif, on l'affiche derrière un signe moins pour obtenir l'opposé
+            if(e1>=0)
+            {
+                accu="-"+String.valueOf(e1); // Met a jour l'accumulateur
+                push(); // Ajoute l'opposé de l'élément à la pile
+            }
+            // Sinon, le nombre est négatif donc on affiche la valeur de son opposé
+            else
+            {
+                e1=-e1; // On prend l'opposé
+                accu=String.valueOf(e1); // Met a jour l'accumulateur
+                push(); // Ajoute l'opposé de l'élément à la pile
+            }
+        } 
+        //Sinon, la pile est vide, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : Veuillez sélectionner un nombre pour en obtenir l'opposé";
         }
     }
 
     @Override
-    public void push(double nombre) {
-        pile.add(nombre); // Ajoute un nombre à la pile
-        accu = ""; // Efface le contenu de l'accumulateur
+    public void push() 
+    {
+    	// Si l'accumulateur est vide, on affiche le message d'erreur
+    	if(accu=="")
+        {
+            accu = "Veuillez sélectionner un nombre avant de push";
+        }
+    	// Sinon, alors on peut push
+        else
+        {
+            double nombre = Double.valueOf(accu); // on récupère la valeur contenu dans l'accumulateur
+            pile.add(nombre); // Ajoute un nombre à la pile
+            accu = ""; // Efface le contenu de l'accumulateur
+        }
     }
 
     @Override
-    public void pop() {
-        if (pile.size() > 0) { // Vérifie s'il y a au moins un élément dans la pile
+    public void pop() 
+    {
+        // Vérifie s'il y a au moins un élément dans la pile
+        if (pile.size() > 0) 
+        { 
             Double e1 = pile.pop(); // Récupère le dernier élément de la pile
             accu = String.valueOf(e1); // Définit l'accumulateur avec la valeur récupérée
-        } else {
-            accu = "La pile est vide";
-            // Si la pile est vide, définissez un message d'erreur dans l'accumulateur
+        }
+        //Sinon, la pile est vide, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : La pile est vide";
         }
     }
 
     @Override
-    public void drop() {
-        if (pile.size() > 0) { // Vérifie s'il y a au moins un élément dans la pile
+    public void drop() 
+    {
+        // Vérifie s'il y a au moins un élément dans la pile
+        if (pile.size() > 0) 
+        { 
             pile.pop(); // Retire le dernier élément de la pile
-        } else {
-            accu = "La pile est vide";
-            // Si la pile est vide, définissez un message d'erreur dans l'accumulateur
+        } 
+        //Sinon, la pile est vide, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : La pile est vide";
         }
     }
 
     @Override
-    public void swap() {
-        if (pile.size() > 1) { // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+    public void swap() 
+    {
+        // Vérifie s'il y a suffisamment d'éléments dans la pile pour effectuer l'opération
+        if (pile.size() > 1) 
+        { 
             Double e1 = pile.pop(); // Récupère le premier élément de la pile
             Double e2 = pile.pop(); // Récupère le deuxième élément de la pile
-            push(e1); // Ajoute le premier élément à la pile (swap)
-            push(e2); // Ajoute le deuxième élément à la pile (swap)
-        } else {
-            accu = "Veuillez sélectionner deux opérandes avant de swap";
-            // Si la pile ne contient pas suffisamment d'éléments, définissez un message d'erreur dans l'accumulateur
+            accu = String.valueOf(e1); // Définit l'accumulateur avec la valeur récupérée
+            push(); // Ajoute le premier élément à la pile (swap)
+            accu = String.valueOf(e2); // Définit l'accumulateur avec la valeur récupérée
+            push(); // Ajoute le deuxième élément à la pile (swap)
+        } 
+        //Sinon, la pile ne contient pas suffisamment d'éléments, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : Veuillez sélectionner deux opérandes avant de swap";
         }
     }
 
     @Override
-    public void clear() {
+    public void clear() 
+    {
         accu = ""; // Efface le contenu de l'accumulateur
         pile.clear(); // Vide complètement la pile
     }
 
     @Override
-    public void erase() {
-        if (accu.length() > 0) { // Vérifie s'il y a des caractères dans l'accumulateur
+    public void erase() 
+    {
+        // Vérifie s'il y a des caractères dans l'accumulateur
+        if (accu.length() > 0) 
+        { 
             accu = accu.substring(0, accu.length() - 1); // Efface le dernier caractère de l'accumulateur
-        } else {
-            accu = "L'accumulateur est déjà vide";
-            // Si l'accumulateur est déjà vide, définissez un message d'erreur dans l'accumulateur
+        } 
+        // Sinon, l'accumulateur est déjà vide, donc affichage d'un message d'erreur dans l'accumulateur
+        else 
+        {
+            accu = "Erreur : L'accumulateur est déjà vide";
         }
     }
 }

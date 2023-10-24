@@ -13,7 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.CalculatorModel;
 
-public class CalculatorGUI extends Application implements CalculatorGUIInterface {
+public class CalculatorGUI extends Application implements CalculatorGUIInterface 
+{
     // La classe CalculatorGUI gère l'interface utilisateur de la calculatrice.
 
     public TextField ecran = new TextField(); // Champ de texte pour l'écran de la calculatrice
@@ -44,7 +45,8 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
     public Button Berase = new Button("<=");
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) 
+    {
         // Configuration de l'interface utilisateur de la calculatrice
 
         stage.setTitle("Luna Calculette"); // Titre de la fenêtre
@@ -173,27 +175,32 @@ public class CalculatorGUI extends Application implements CalculatorGUIInterface
         stage.show(); // Affiche la fenêtre
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         launch(args); // Point d'entrée de l'application JavaFX
     }
 
     @Override
-    public String LireEcran() {
+    public String LireEcran() 
+    {
         return this.ecran.getText(); // Lit le contenu de l'écran de la calculatrice
     }
 
     @Override
-    public void setEcran(String string) {
+    public void setEcran(String string) 
+    {
         this.ecran.setText(string); // Définit le contenu de l'écran de la calculatrice
     }
 
     @Override
-    public Label getMemoire() {
+    public Label getMemoire() 
+    {
         return memoire; // Renvoie l'étiquette d'affichage de la mémoire
     }
 
     @Override
-    public void setMemoire(List<Double> stackData) {
+    public void setMemoire(List<Double> stackData) 
+    {
         this.memoire.setText(String.valueOf(stackData)); // Met à jour l'affichage de la pile dans l'interface utilisateur
     }
 }
