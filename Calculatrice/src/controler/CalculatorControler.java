@@ -1,7 +1,9 @@
 package controler;
 
 import model.CalculatorModel;
+import model.CalculatorModelInterface;
 import view.CalculatorGUI;
+import view.CalculatorGUIInterface;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -11,26 +13,34 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
     // Les contrôleurs sont responsables de la gestion des événements utilisateur
     // Cette classe est un contrôleur qui réagit aux actions de l'utilisateur sur les boutons.
 
-    public CalculatorGUI gui; // Référence à la vue (l'interface utilisateur)
-    public CalculatorModel model; // Référence au modèle (la logique de la calculatrice)
+    private CalculatorGUIInterface gui; // Référence à la vue (l'interface utilisateur)
+    private CalculatorModelInterface model; // Référence au modèle (la logique de la calculatrice)
+    
 
-    // Constructeur de la classe CalculatorControler
-    public CalculatorControler(CalculatorGUI gui, CalculatorModel model) 
+
+    
+    // Constructeur de la classe CalculatorControler privé
+    public CalculatorControler(CalculatorGUIInterface gui, CalculatorModelInterface model) 
     {
         this.gui = gui; // Initialise la référence à la vue
         this.model = model; // Initialise la référence au modèle
+        
     }
+
 
     @Override
     public void handle(ActionEvent event) 
     {
         // La méthode handle est appelée chaque fois qu'un événement (clic de bouton) se produit
 
-        Object boutton = event.getSource(); // Récupère l'objet (bouton) qui a déclenché l'événement
-        Button b = (Button) boutton; // Convertit l'objet en bouton
-        String texte = b.getText(); // Récupère le texte affiché sur le bouton
-        String lu = gui.LireEcran(); // Lit le texte actuellement affiché sur l'écran
-
+       // Object boutton = event.getSource(); // Récupère l'objet (bouton) qui a déclenché l'événement
+        //Button b = (Button) boutton; // Convertit l'objet en bouton
+    	Object source = event.getSource(); // Récupère l'objet qui a déclenché l'événement
+    	if (source instanceof Button) { // Vérifie si l'objet est une instance de Button
+    	    Button b = (Button) source; // Convertit l'objet en bouton de manière sûre
+    	    String texte = b.getText(); // Récupère le texte affiché sur le bouton
+    	    String lu = gui.LireEcran(); // Lit le texte actuellement affiché sur l'écran
+    		
         // En fonction du texte du bouton cliqué, nous effectuons différentes actions
         
         // Si l'utilisateur vient de faire une erreur 
@@ -123,26 +133,27 @@ public class CalculatorControler implements EventHandler<ActionEvent>, Calculato
             gui.setEcran(lu+texte); //Met a jour l'écran en rajoutant le nouveau chiffre ou point
             actualiseAccu(); // Met a jour l'accumulateur 
         }   
+        }
     }
     
     @Override
     public void actualiseEcran() 
     {
         // Cette méthode met à jour l'affichage de l'écran avec la valeur de l'accumulateur du modèle
-        gui.setEcran(model.accu); // Met à jour l'affichage de l'écran avec la valeur de l'accumulateur
+        gui.setEcran(model.getAccu()); // Met à jour l'affichage de l'écran avec la valeur de l'accumulateur
     }
 
     @Override
     public void actualiseAccu() 
     {
         // Cette méthode met à jour la valeur de l'accumulateur du modèle en lisant le texte de l'écran
-        model.accu = gui.LireEcran(); // Met à jour la valeur de l'accumulateur en lisant le texte de l'écran
+    	model.setAccu(gui.LireEcran()); // Met à jour la valeur de l'accumulateur en lisant le texte de l'écran
     }
 
     @Override
     public void actualiseMemoire() 
     {
         // Cette méthode met à jour l'affichage de la mémoire avec la pile du modèle
-        gui.setMemoire(model.pile); // Met à jour l'affichage de la mémoire avec la pile du modèle
+        gui.setMemoire(model.getPile()); // Met à jour l'affichage de la mémoire avec la pile du modèle
     }
 }

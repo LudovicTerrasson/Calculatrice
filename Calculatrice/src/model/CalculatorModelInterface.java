@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Stack;
+
 public interface CalculatorModelInterface 
 {
     // Méthode pour effectuer une addition
@@ -34,4 +36,13 @@ public interface CalculatorModelInterface
 
     // Méthode pour effacer le dernier caractère de l'accumulateur
     public void erase();
+    
+    //getter et setter accu
+    public void setAccu(String accu);
+    public String getAccu();
+    
+    //getter et setter pile
+    public void setPile(Stack<Double> pile);
+    public Stack<Double> getPile();
+    
 }

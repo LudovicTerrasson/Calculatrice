@@ -5,10 +5,31 @@ import java.util.Stack;
 public class CalculatorModel implements CalculatorModelInterface 
 {
     // L'accumulateur qui stocke le résultat des opérations
-    public String accu = "";
+    private String accu = "";
     // La pile qui stocke les nombres
-    public Stack<Double> pile = new Stack<>();
+    private Stack<Double> pile = new Stack<>();
 
+    //Getter et setter de accu car en private
+    public void setAccu(String accu) 
+    {
+    	this.accu = accu ;
+    }
+    
+    public String getAccu() 
+    {
+    	return accu;
+    }
+  //Getter et setter de pile car en private
+    public void setPile(Stack<Double> pile) 
+    {
+    	this.pile = pile ;
+    }
+    
+    public Stack<Double> getPile() 
+    {
+    	return pile;
+    }
+    
     @Override
     public void add() 
     {
